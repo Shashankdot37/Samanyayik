@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* ===== ACCESSIBILITY BASE ===== */
+
+:focus {
+  outline: 3px solid #FFD54A;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+:root.high-contrast {
+  --bg: #000;
+  --fg: #fff;
+  --accent: #ff0;
+}
+
+.high-contrast body {
+  background-color: var(--bg) !important;
+  color: var(--fg) !important;
+}
+
+/* Larger font mode */
+.large-font {
+  font-size: 1.125rem;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ===== SCREEN READER ONLY ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== WHY US SECTION ===== */
+
+/* Small screen (mobile first) */
+.why-us-small {
+  display: grid;
+  grid-template-columns: 1fr; /* single column */
+  gap: 2rem; /* vertical space between cards */
+  justify-items: center;
+  width: 100%;
+  max-width: 400px; /* constrain the grid itself */
+  margin: 0 auto; /* center the grid container */
+  padding: 1rem 0;
+}
+
+/* Cards inside small grid */
+.why-small-1,
+.why-small-2,
+.why-small-3,
+.why-small-4 {
+  width: 100%; /* full width of the grid column */
+  min-height: 245px;
+  /* remove margin-bottom — grid gap handles spacing */
+}
+
+/* ---------- LARGE SCREEN (from 640px and up) ---------- */
+@media (min-width: 640px) {
+  .why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(5, 100px);
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  /* Custom card positions — your original layout */
+  .why-1 {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+
+  .why-2 {
+    grid-area: 1 / 4 / 2 / 6;
+  }
+
+  .why-3 {
+    grid-area: 4 / 2 / 5 / 4;
+  }
+
+  .why-4 {
+    grid-area: 4 / 5 / 5 / 7;
+  }
+}
+
+/* ---------- INTERACTIONS ---------- */
+[class^="why-small-"],
+[class^="why-"] {
+  transition: transform 0.25s ease;
+}
+
+[class^="why-small-"]:hover,
+[class^="why-"]:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+/* Disable transform for reduced motion users */
+@media (prefers-reduced-motion: reduce) {
+  [class^="why-small-"]:hover,
+  [class^="why-"]:hover {
+    transform: none;
+  }
+}
