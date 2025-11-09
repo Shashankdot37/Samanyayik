@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import news1 from "../assets/news1.jpg";
 import news2 from "../assets/news2.jpg";
 import news3 from "../assets/news3.jpg";
 
-// Using object instead of enum
 const Category = {
   NEWS: "news",
   BLOG: "blog",
@@ -14,6 +13,20 @@ const Category = {
 
 const News: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState(Category.NEWS);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      const mobile = window.innerWidth < 768;
+      setItemsPerView(mobile ? 1 : 3);
+      setIsMobile(mobile);
+    };
+    updateItemsPerView();
+    window.addEventListener("resize", updateItemsPerView);
+    return () => window.removeEventListener("resize", updateItemsPerView);
+  }, []);
 
   const articles = {
     [Category.NEWS]: [
@@ -41,6 +54,22 @@ const News: React.FC = () => {
         tag: "Law",
         image: news3,
       },
+      {
+        title: "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
+        desc: "Parliament has approved the revised Consumer Protection Bill, introducing stricter penalties for fraud...",
+        date: "20th July 2025",
+        author: "Manish Poudel",
+        tag: "Law",
+        image: news3,
+      },
+      {
+        title: "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
+        desc: "Parliament has approved the revised Consumer Protection Bill, introducing stricter penalties for fraud...",
+        date: "20th July 2025",
+        author: "Manish Poudel",
+        tag: "Law",
+        image: news3,
+      },
     ],
     [Category.LEGAL]: [
       {
@@ -49,7 +78,31 @@ const News: React.FC = () => {
         date: "10th Aug 2025",
         author: "Aashish Bhatt",
         tag: "Legal",
-        image: "https://placehold.co/265x333",
+        image: news1,
+      },
+      {
+        title: "Contract Law Reforms 2025",
+        desc: "Upcoming changes in contract law explained for businesses and individuals.",
+        date: "5th July 2025",
+        author: "Kiran Shrestha",
+        tag: "Legal",
+        image: news2,
+      },
+      {
+        title: "Contract Law Reforms 2025",
+        desc: "Upcoming changes in contract law explained for businesses and individuals.",
+        date: "5th July 2025",
+        author: "Kiran Shrestha",
+        tag: "Legal",
+        image: news2,
+      },
+      {
+        title: "Contract Law Reforms 2025",
+        desc: "Upcoming changes in contract law explained for businesses and individuals.",
+        date: "5th July 2025",
+        author: "Kiran Shrestha",
+        tag: "Legal",
+        image: news2,
       },
     ],
     [Category.BLOG]: [
@@ -59,54 +112,138 @@ const News: React.FC = () => {
         date: "15th Aug 2025",
         author: "Rekha Ghimire",
         tag: "Blog",
-        image: "https://placehold.co/265x333",
+        image: news3,
+      },
+      {
+        title: "Behind the Bench: How Laws Are Drafted",
+        desc: "A look into the complex process of drafting and passing bills in the national parliament.",
+        date: "15th Aug 2025",
+        author: "Rekha Ghimire",
+        tag: "Blog",
+        image: news3,
+      },
+      {
+        title: "Behind the Bench: How Laws Are Drafted",
+        desc: "A look into the complex process of drafting and passing bills in the national parliament.",
+        date: "15th Aug 2025",
+        author: "Rekha Ghimire",
+        tag: "Blog",
+        image: news3,
+      },
+      {
+        title: "Behind the Bench: How Laws Are Drafted",
+        desc: "A look into the complex process of drafting and passing bills in the national parliament.",
+        date: "15th Aug 2025",
+        author: "Rekha Ghimire",
+        tag: "Blog",
+        image: news3,
+      },
+      {
+        title: "Behind the Bench: How Laws Are Drafted",
+        desc: "A look into the complex process of drafting and passing bills in the national parliament.",
+        date: "15th Aug 2025",
+        author: "Rekha Ghimire",
+        tag: "Blog",
+        image: news3,
       },
     ],
   };
 
   const currentArticles = articles[activeCategory];
 
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (carouselRef.current) {
+      const scrollAmount = carouselRef.current.offsetWidth / itemsPerView;
+      carouselRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#F6E9D9", color: "white", display: "flex", flexDirection: "column" }}>
-      {/* Header */}
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#F6E9D9",
+        color: "white",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Header />
 
-      {/* Main content */}
-      <div
+      <main
         style={{
           display: "flex",
           justifyContent: "center",
-          gap: "60px",
-          alignItems: "flex-start",
-          padding: "60px 20px",
+          gap: "40px",
+          padding: isMobile ? "30px 10px" : "60px 20px",
           flexWrap: "wrap",
         }}
       >
-        {/* LEFT SECTION - CAROUSEL */}
-        <div
+        {/* Left Section - Carousel */}
+        <section
           style={{
+            width: "65%",
+            minWidth: "300px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width: "65%",
-            minWidth: "320px",
           }}
+          aria-label={`${activeCategory} articles carousel`}
         >
           <div
             style={{
               display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              marginBottom: "10px",
+            }}
+          >
+            <button
+              onClick={() => scrollCarousel("left")}
+              aria-label="Scroll left"
+              style={{
+                cursor: "pointer",
+                fontSize: "20px",
+                background: "none",
+                border: "none",
+                color: "#043222",
+              }}
+            >
+              &#8592;
+            </button>
+            <button
+              onClick={() => scrollCarousel("right")}
+              aria-label="Scroll right"
+              style={{
+                cursor: "pointer",
+                fontSize: "20px",
+                background: "none",
+                border: "none",
+                color: "#043222",
+              }}
+            >
+              &#8594;
+            </button>
+          </div>
+
+          <div
+            ref={carouselRef}
+            style={{
+              display: "flex",
+              gap: "20px",
               overflowX: "auto",
-              gap: "30px",
               scrollSnapType: "x mandatory",
               paddingBottom: "20px",
-              scrollbarWidth: "none",
             }}
           >
             {currentArticles.map((article, index) => (
-              <div
+              <article
                 key={index}
                 style={{
-                  minWidth: "265px",
+                  minWidth: `calc(100% / ${itemsPerView} - 20px)`,
                   scrollSnapAlign: "center",
                   display: "flex",
                   flexDirection: "column",
@@ -116,8 +253,8 @@ const News: React.FC = () => {
               >
                 <div
                   style={{
-                    width: "265px",
-                    height: "333px",
+                    width: "100%",
+                    height: "300px",
                     borderRadius: "28px",
                     backgroundImage: `url(${article.image})`,
                     backgroundSize: "cover",
@@ -146,7 +283,7 @@ const News: React.FC = () => {
                   </div>
 
                   <div>
-                    <div
+                    <h2
                       style={{
                         color: "white",
                         fontSize: "16px",
@@ -156,8 +293,8 @@ const News: React.FC = () => {
                       }}
                     >
                       {article.title}
-                    </div>
-                    <div
+                    </h2>
+                    <p
                       style={{
                         color: "#E4DFDF",
                         fontSize: "9px",
@@ -167,7 +304,7 @@ const News: React.FC = () => {
                       }}
                     >
                       {article.desc}
-                    </div>
+                    </p>
                     <div
                       style={{
                         display: "flex",
@@ -179,14 +316,18 @@ const News: React.FC = () => {
                       }}
                     >
                       <span>{article.date}</span>
-                      <span style={{ fontWeight: "700", fontFamily: "EB Garamond" }}>
+                      <span
+                        style={{
+                          fontWeight: "700",
+                          fontFamily: "EB Garamond",
+                        }}
+                      >
                         {article.author}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                {/* Read More Button */}
                 <button
                   style={{
                     background: "rgba(4,50,34,0.85)",
@@ -199,29 +340,30 @@ const News: React.FC = () => {
                     width: "78px",
                     height: "26px",
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
                   }}
-                  onMouseOver={(e) => (e.currentTarget.style.background = "rgba(4,50,34,0.95)")}
-                  onMouseOut={(e) => (e.currentTarget.style.background = "rgba(4,50,34,0.85)")}
+                  aria-label={`Read more about ${article.title}`}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.background = "rgba(4,50,34,0.95)")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.background = "rgba(4,50,34,0.85)")
+                  }
                 >
                   Read More
                 </button>
-              </div>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* DIVIDER LINE */}
-        <div
-          style={{
-            width: "1px",
-            height: "500px",
-            background: "#043222",
-          }}
-        />
+        {/* Divider */}
+        {!isMobile && (
+          <div style={{ width: "1px", height: "500px", background: "#043222" }} />
+        )}
 
-        {/* RIGHT SECTION - CATEGORY NAV */}
-        <div
+        {/* Right Section - Categories */}
+        <nav
+          aria-label="Article categories"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -235,26 +377,29 @@ const News: React.FC = () => {
             { label: "Legal Commentary", value: Category.LEGAL },
             { label: "Blog", value: Category.BLOG },
           ].map((item) => (
-            <div
+            <button
               key={item.value}
               onClick={() => setActiveCategory(item.value)}
               style={{
-                color: activeCategory === item.value ? "#043222" : "gray",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color:
+                  activeCategory === item.value ? "#043222" : "gray",
                 fontFamily: "EB Garamond",
                 fontSize: "17px",
                 fontWeight: "400",
-                cursor: "pointer",
-                transition: "color 0.3s ease",
-                textDecoration: activeCategory === item.value ? "underline" : "none",
+                textDecoration:
+                  activeCategory === item.value ? "underline" : "none",
               }}
+              aria-pressed={activeCategory === item.value}
             >
               {item.label}
-            </div>
+            </button>
           ))}
-        </div>
-      </div>
+        </nav>
+      </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

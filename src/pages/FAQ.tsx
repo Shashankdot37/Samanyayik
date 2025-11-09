@@ -34,16 +34,22 @@ const FaqPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F6E9D9] text-white flex flex-col">
+    <div className="min-h-screen bg-[#F6E9D9] flex flex-col">
       {/* Header */}
       <Header />
 
       {/* Page Title */}
-      <section className="flex flex-col items-center mt-16 mb-12 text-center">
+      <section
+        className="flex flex-col items-center mt-12 mb-8 text-center px-4"
+        role="banner"
+      >
         <h1
-          className="text-[57px] font-bold font-[EB_Garamond] text-[#043222]"
+          className="font-[EB_Garamond] text-[#043222] font-bold"
+          style={{
+            fontSize: "clamp(1.8rem, 4vw, 57px)",
+            fontWeight: "bold",
+          }}
           aria-label="Frequently Asked Questions"
-          style={{ fontSize: "57px", fontWeight: "bold" }}
         >
           Frequently Asked Questions
         </h1>
@@ -51,20 +57,28 @@ const FaqPage: React.FC = () => {
 
       {/* FAQ List */}
       <section
-        className="flex flex-col items-center justify-start gap-12"
-        style={{ paddingBottom: "5vh", paddingTop: "5vh" }}
+        className="flex flex-col items-center justify-start gap-8 sm:gap-12 px-4 sm:px-8 md:px-12 pb-12"
+        style={{ padding: "5vh" }}
+        aria-labelledby="faq-section"
       >
         <div
-          className="flex-col justify-start items-start gap-[50px] inline-flex"
-          style={{ width: "542px" }}
+          className="flex flex-col justify-start items-center gap-8 w-full max-w-[800px]"
+          id="faq-section"
         >
           {faqs.map((faq, index) => {
             const isActive = activeIndex === index;
 
             return (
-              <div key={index} className="flex flex-col gap-4 w-full">
-                {/* Question Box */}
+              <div
+                key={index}
+                className="flex flex-col gap-3 w-full"
+                style={{ width: "100%" }}
+              >
+                {/* Question Button */}
                 <button
+                  id={`faq-question-${index}`}
+                  aria-controls={`faq-answer-${index}`}
+                  aria-expanded={isActive}
                   onClick={() =>
                     setActiveIndex(isActive ? null : index)
                   }
@@ -74,38 +88,46 @@ const FaqPage: React.FC = () => {
                       setActiveIndex(isActive ? null : index);
                     }
                   }}
-                  aria-expanded={isActive}
-                  aria-controls={`faq-answer-${index}`}
                   style={{
-                    height: "84px",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "10px",
                     width: "100%",
-                    paddingLeft: "46px",
-                    paddingRight: "46px",
-                    paddingTop: "28px",
-                    paddingBottom: "28px",
+                    padding: "20px 24px",
                     background: isActive
-                      ? "rgba(4, 50, 34, 0.95)" // darker when active (clicked)
-                      : "rgba(4, 50, 34, 0.85)", // normal when inactive
+                      ? "rgba(4, 50, 34, 0.95)"
+                      : "rgba(4, 50, 34, 0.85)",
                     borderTopRightRadius: "30px",
                     borderBottomRightRadius: "30px",
                     borderBottomLeftRadius: "30px",
-                    textAlign: "left",
                     color: "white",
-                    fontSize: "17px",
+                    fontSize: "clamp(0.9rem, 2vw, 20px)",
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 300,
+                    textAlign: "left",
                     transition: "all 0.3s ease",
                     cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    outline: isActive
+                      ? "2px solid #FFEEAD"
+                      : "2px solid transparent",
+                    outlineOffset: "2px",
                   }}
+                  className="focus-visible:ring-2 focus-visible:ring-[#FFEEAD] hover:bg-[rgba(4,50,34,0.95)]"
                 >
-                  {faq.question}
+                  <span>{faq.question}</span>
+                  <span
+                    style={{
+                      transform: isActive ? "rotate(45deg)" : "rotate(0)",
+                      transition: "transform 0.3s ease",
+                      fontSize: "1.3rem",
+                    }}
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
                 </button>
 
-                {/* Answer Box */}
+                {/* Answer */}
                 {isActive && (
                   <div
                     id={`faq-answer-${index}`}
@@ -113,22 +135,17 @@ const FaqPage: React.FC = () => {
                     aria-labelledby={`faq-question-${index}`}
                     style={{
                       width: "100%",
-                      maxWidth: "790px",
-                      paddingLeft: "45px",
-                      paddingRight: "45px",
-                      paddingTop: "29px",
-                      paddingBottom: "29px",
+                      padding: "20px 24px",
                       background: "rgba(255, 238, 173, 0.8)",
-                      color: "black",
-                      fontSize: "15px",
-                      fontFamily: "Inter, sans-serif",
-                      fontWeight: 100,
                       borderTopLeftRadius: "30px",
                       borderBottomRightRadius: "30px",
                       borderBottomLeftRadius: "30px",
                       border: "1px solid black",
-                      outlineOffset: "-1px",
                       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                      color: "black",
+                      fontSize: "clamp(0.85rem, 1.8vw, 18px)",
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 300,
                       transition: "all 0.5s ease",
                     }}
                   >

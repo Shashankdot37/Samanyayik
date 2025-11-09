@@ -16,6 +16,7 @@ const GetinTouch: React.FC = () => {
         overflow: "hidden",
         zIndex: 32,
         marginTop: "-3.2rem",
+        paddingBottom:"4vh"
       }}
     >
       <div
