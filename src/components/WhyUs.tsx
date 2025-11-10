@@ -4,16 +4,28 @@ import "../index.css";
 
 const WhyUs: React.FC = () => {
   const cards = [
-    { title: "Comprehensive Legal Solutions", desc: "Expert services through our dedicated law firm." },
-    { title: "Research & Policy Analysis", desc: "Expert services through our dedicated law firm." },
-    { title: "Professional Translation Services", desc: "Expert services through our dedicated law firm." },
-    { title: "Interpretation Services", desc: "Expert services through our dedicated law firm." },
+    {
+      title: "Comprehensive Legal Solutions",
+      desc: "Expert services through our dedicated law firm.",
+    },
+    {
+      title: "Research & Policy Analysis",
+      desc: "Expert services through our dedicated law firm.",
+    },
+    {
+      title: "Professional Translation Services",
+      desc: "Expert services through our dedicated law firm.",
+    },
+    {
+      title: "Interpretation Services",
+      desc: "Expert services through our dedicated law firm.",
+    },
   ];
 
   return (
     <section
       aria-labelledby="whyus-heading"
-      className="relative w-full overflow-hidden min-h-[800px]"
+      className="relative w-full overflow-hidden min-h-screen"
       style={{
         backgroundColor: "#F6E9D9",
         borderTopLeftRadius: "58px",
@@ -38,7 +50,7 @@ const WhyUs: React.FC = () => {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-10 md:px-16 py-20 sm:py-24  mt-[90px] mb-[90px] text-center">
+      <div className="relative mx-auto px-6 sm:px-10 md:px-16 py-20 sm:py-24 text-center">
         {/* Heading */}
         <h1
           id="whyus-heading"
@@ -48,7 +60,7 @@ const WhyUs: React.FC = () => {
             fontSize: "clamp(2.5rem, 6vw, 5.9rem)",
             color: "black",
             marginBottom: "3rem",
-            marginTop:"2rem"
+            marginTop: "2rem",
           }}
         >
           Why Us?
@@ -59,7 +71,9 @@ const WhyUs: React.FC = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className={`why-${index + 1} sm:why-${index+1} focus:outline-none p-8 focus-visible:ring-4 focus-visible:ring-[#FFEEAD] rounded-[30px] flex flex-col justify-center items-center text-center transition-transform transform hover:scale-[1.02] hover:cursor-pointer`}
+              className={`why-${index + 1} sm:why-${
+                index + 1
+              } focus:outline-none p-8 focus-visible:ring-4 focus-visible:ring-[#FFEEAD] rounded-[30px] flex flex-col justify-center items-center text-center transition-transform transform hover:scale-[1.02] hover:cursor-pointer`}
               style={{
                 backgroundColor: "rgba(16, 59, 43, 0.85)",
                 width: "100%",

@@ -16,12 +16,12 @@ const GetinTouch: React.FC = () => {
         overflow: "hidden",
         zIndex: 32,
         marginTop: "-3.2rem",
-        paddingBottom:"4vh"
+        paddingBottom: "1vh",
       }}
     >
       <div
         className="w-full flex justify-center mt-8"
-        style={{ marginBottom: "20vh" }}
+        style={{ marginBottom: "5vh" }}
       >
         <h1
           className="font-['EB_Garamond'] text-center"

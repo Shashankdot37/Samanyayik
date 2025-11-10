@@ -31,7 +31,8 @@ const News: React.FC = () => {
   const articles = {
     [Category.NEWS]: [
       {
-        title: "Government Launches Major Infrastructure Overhaul to Modernize City Roads",
+        title:
+          "Government Launches Major Infrastructure Overhaul to Modernize City Roads",
         desc: "The Ministry of Physical Infrastructure has announced a new project to repair and expand major city roads, aiming to reduce congestion and improve public...",
         date: "2nd Aug 2025",
         author: "Saroj K. Thapa",
@@ -47,7 +48,8 @@ const News: React.FC = () => {
         image: news2,
       },
       {
-        title: "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
+        title:
+          "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
         desc: "Parliament has approved the revised Consumer Protection Bill, introducing stricter penalties for fraud...",
         date: "20th July 2025",
         author: "Manish Poudel",
@@ -55,7 +57,8 @@ const News: React.FC = () => {
         image: news3,
       },
       {
-        title: "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
+        title:
+          "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
         desc: "Parliament has approved the revised Consumer Protection Bill, introducing stricter penalties for fraud...",
         date: "20th July 2025",
         author: "Manish Poudel",
@@ -63,7 +66,8 @@ const News: React.FC = () => {
         image: news3,
       },
       {
-        title: "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
+        title:
+          "New Consumer Protection Bill Passed to Strengthen Legal Remedies",
         desc: "Parliament has approved the revised Consumer Protection Bill, introducing stricter penalties for fraud...",
         date: "20th July 2025",
         author: "Manish Poudel",
@@ -172,6 +176,22 @@ const News: React.FC = () => {
       }}
     >
       <Header />
+
+      <section
+        className="flex flex-col items-center mt-12 mb-8 text-center px-4"
+        role="banner"
+      >
+        <h1
+          className="font-[EB_Garamond] text-[#043222] font-bold"
+          style={{
+            fontSize: "clamp(1.8rem, 4vw, 57px)",
+            fontWeight: "bold",
+          }}
+          aria-label="News & Articles"
+        >
+          News & Articles
+        </h1>
+      </section>
 
       <main
         style={{
@@ -358,7 +378,9 @@ const News: React.FC = () => {
 
         {/* Divider */}
         {!isMobile && (
-          <div style={{ width: "1px", height: "500px", background: "#043222" }} />
+          <div
+            style={{ width: "1px", height: "500px", background: "#043222" }}
+          />
         )}
 
         {/* Right Section - Categories */}
@@ -384,8 +406,7 @@ const News: React.FC = () => {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
-                color:
-                  activeCategory === item.value ? "#043222" : "gray",
+                color: activeCategory === item.value ? "#043222" : "gray",
                 fontFamily: "EB Garamond",
                 fontSize: "17px",
                 fontWeight: "400",

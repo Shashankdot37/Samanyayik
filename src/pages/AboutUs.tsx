@@ -6,24 +6,19 @@ const AboutUs: React.FC = () => {
   return (
     <>
       <Header />
-      <main
-        className="relative min-h-screen flex flex-col items-center justify-start bg-[#F6E9D9] overflow-hidden px-4 sm:px-6 lg:px-8"
-        style={{
-          paddingTop: "4rem",
-        }}
-      >
+      <main className="relative flex flex-col items-center justify-start bg-[#F6E9D9] overflow-visible px-4 sm:px-6 lg:px-8">
         {/* Page Title */}
         <h1
           className="font-[EB_Garamond] text-[#043222] font-bold mb-8 text-center"
           style={{
             fontSize: "clamp(2rem, 4vw, 57px)",
-            fontWeight: "bold",
+            marginTop: "2rem",
           }}
         >
           About Us
         </h1>
 
-        {/* Background Image (Decorative) */}
+        {/* Background Image */}
         <img
           src={beamBalance}
           alt=""
@@ -32,22 +27,22 @@ const AboutUs: React.FC = () => {
           style={{
             width: "min(80%, 500px)",
             height: "auto",
-            top: "5%",
-            left: "2%",
+            top: "-8%",
+            left: "-7%",
             zIndex: 0,
           }}
         />
 
-        {/* Mission Box Wrapper */}
+        {/* Mission Box */}
         <section
           className="flex justify-center items-center w-full"
           style={{
             zIndex: 1,
-            marginTop: "1rem",
-            marginBottom: "3rem",
+            marginTop: "3rem",
+            marginBottom: "7rem",
+            opacity: 0.95,
           }}
         >
-          {/* Mission Box */}
           <div
             className="backdrop-blur-md shadow-lg"
             style={{
@@ -55,13 +50,8 @@ const AboutUs: React.FC = () => {
               background: "rgba(16, 59, 43, 0.85)",
               borderTopRightRadius: "58px",
               borderBottomLeftRadius: "58px",
-              padding: "2.5rem 2rem",
+              padding: "2.5rem 4rem",
               textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexWrap: "wrap",
-              transition: "transform 0.3s ease",
             }}
           >
             <p
@@ -111,6 +101,49 @@ const AboutUs: React.FC = () => {
             </p>
           </div>
         </section>
+
+        {/* Team Vertical Stack */}
+        <div
+          className="flex flex-col items-center justify-start gap-7 w-[204px] mx-auto py-10 relative z-10"
+          style={{ marginBottom: "5rem" }}
+        >
+          {/* Top Circle */}
+          <img
+            src="https://placehold.co/156x154"
+            alt="Team member 1"
+            className="w-[156px] h-[154px] rounded-full border-[5px] border-[#D56B4B] bg-[#D9D9D9] object-cover"
+          />
+
+          {/* Divider Line */}
+          <div className="h-[100px] w-[7px] bg-[#043222]"></div>
+
+          {/* Circle 2 */}
+          <img
+            src="https://placehold.co/152x152"
+            alt="Team member 2"
+            className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
+          />
+
+          {/* Divider Line */}
+          <div className="h-[100px] w-[7px] bg-[#043222]"></div>
+
+          {/* Circle 3 */}
+          <img
+            src="https://placehold.co/152x152"
+            alt="Team member 3"
+            className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
+          />
+
+          {/* Divider Line */}
+          <div className="h-[100px] w-[7px] bg-[#043222]"></div>
+
+          {/* Circle 4 */}
+          <img
+            src="https://placehold.co/152x152"
+            alt="Team member 4"
+            className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
+          />
+        </div>
       </main>
       <Footer />
     </>
