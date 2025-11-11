@@ -111,9 +111,17 @@ const Testimonial = () => {
           {/* Right: Review Box */}
           <div
             className="bg-white text-black p-6 lg:p-8 rounded-tr-[40px] rounded-bl-[40px] max-w-xl w-[60%] opacity-80"
-            style={{ minHeight: "250px" }}
+            style={{
+              minHeight: "250px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <p className="font-['EB_Garamond'] text-base leading-relaxed">
+            <p
+              className="font-['EB_Garamond'] text-base leading-relaxed"
+              style={{ width: "90%" }}
+            >
               "{currentTestimonial.review}"
             </p>
           </div>

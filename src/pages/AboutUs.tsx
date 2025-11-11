@@ -1,6 +1,10 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import beamBalance from "../assets/beam-balance.png";
+import AU1 from "../assets/au1.jpg";
+import AU2 from "../assets/au2.jpg";
+import AU3 from "../assets/au3.jpg";
+import AU4 from "../assets/au4.jpg";
 
 const AboutUs: React.FC = () => {
   return (
@@ -109,9 +113,9 @@ const AboutUs: React.FC = () => {
         >
           {/* Top Circle */}
           <img
-            src="https://placehold.co/156x154"
+            src={AU1}
             alt="Team member 1"
-            className="w-[156px] h-[154px] rounded-full border-[5px] border-[#D56B4B] bg-[#D9D9D9] object-cover"
+            className="w-[156px] h-[156px] rounded-full border-[5px] border-[#D56B4B] bg-[#D9D9D9] object-cover"
           />
 
           {/* Divider Line */}
@@ -119,7 +123,7 @@ const AboutUs: React.FC = () => {
 
           {/* Circle 2 */}
           <img
-            src="https://placehold.co/152x152"
+            src={AU2}
             alt="Team member 2"
             className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
           />
@@ -129,7 +133,7 @@ const AboutUs: React.FC = () => {
 
           {/* Circle 3 */}
           <img
-            src="https://placehold.co/152x152"
+            src={AU3}
             alt="Team member 3"
             className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
           />
@@ -139,7 +143,7 @@ const AboutUs: React.FC = () => {
 
           {/* Circle 4 */}
           <img
-            src="https://placehold.co/152x152"
+            src={AU4}
             alt="Team member 4"
             className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
           />

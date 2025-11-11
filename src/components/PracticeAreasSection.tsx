@@ -79,6 +79,7 @@ const PracticeAreasSection = () => {
             <div
               key={idx}
               className="flex flex-col justify-start items-center text-center px-8 py-10 relative transition-transform hover:scale-[1.03]"
+              style={{ paddingRight: "1rem" }}
             >
               {/* Divider Lines for desktop */}
               {idx < 4 && (
