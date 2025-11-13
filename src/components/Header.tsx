@@ -57,7 +57,7 @@ const Header = () => {
           }}
           aria-label="Main navigation"
         >
-          {["news", "faqs", "services", "aboutus"].map((path) => (
+          {["news", "faqs", "services", "aboutus","notices"].map((path) => (
             <NavLink
               key={path}
               to={`/${path}`}
@@ -99,7 +99,7 @@ const Header = () => {
           }}
           aria-label="Mobile navigation"
         >
-          {["news", "faqs", "services", "aboutus"].map((path) => (
+          {["news", "faqs", "services", "aboutus", "notices"].map((path) => (
             <NavLink
               key={path}
               to={`/${path}`}

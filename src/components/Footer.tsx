@@ -31,12 +31,12 @@ const Footer: React.FC = () => {
             style={{ lineHeight: "2.5rem" }}
           >
             <li>
-              <a href="#" className=" hover:cursor-pointer hover:underline focus:underline focus:outline-none">
+              <a href="/news" className=" hover:cursor-pointer hover:underline focus:underline focus:outline-none">
                 News
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline focus:underline focus:outline-none">
+              <a href="/faqs" className="hover:underline focus:underline focus:outline-none">
                 FAQs
               </a>
             </li>
@@ -48,6 +48,11 @@ const Footer: React.FC = () => {
             <li>
               <a href="#" className="hover:underline focus:underline focus:outline-none">
                 Research & Publications
+              </a>
+            </li>
+            <li>
+              <a href="/notices" className="hover:underline focus:underline focus:outline-none">
+                Notices
               </a>
             </li>
           </ul>
