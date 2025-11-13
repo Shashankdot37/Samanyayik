@@ -7,12 +7,14 @@ import PracticeAreasSection from "../components/PracticeAreasSection";
 import Testimonial from "../components/Testimonial";
 import GetinTouch from "../components/GetInTouch";
 import Footer from "../components/Footer";
+import OurAchievements from "../components/OurAchievements";
 
 const LandingPage: React.FC = () => {
   return (
     <div style={{overflow:"hidden"}}>
       <HeroSection />
       <WhyUs/>
+      <OurAchievements/>
      <Article/>
       <PracticeAreasSection/>
       <Testimonial/>

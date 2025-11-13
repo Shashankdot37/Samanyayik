@@ -14,6 +14,7 @@ const Article: React.FC = () => {
     >
       {/* === QUOTE BOX === */}
       <div
+      className="sm:mx-5"
         style={{
           background: "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.95))",
           minHeight: "40px",

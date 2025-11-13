@@ -1,10 +1,10 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import beamBalance from "../assets/beam-balance.png";
-import AU1 from "../assets/au1.jpg";
-import AU2 from "../assets/au2.jpg";
-import AU3 from "../assets/au3.jpg";
-import AU4 from "../assets/au4.jpg";
+import OurTeam from "../components/OurTeam";
+import AboutUsTimeline from "../components/AboutUsTimeline";
+import AboutUsMission from "../components/AboutUsMission";
+import OurAchievements from "../components/OurAchievements";
 
 const AboutUs: React.FC = () => {
   return (
@@ -37,117 +37,13 @@ const AboutUs: React.FC = () => {
           }}
         />
 
-        {/* Mission Box */}
-        <section
-          className="flex justify-center items-center w-full"
-          style={{
-            zIndex: 1,
-            marginTop: "3rem",
-            marginBottom: "7rem",
-            opacity: 0.95,
-          }}
-        >
-          <div
-            className="backdrop-blur-md shadow-lg"
-            style={{
-              width: "clamp(300px, 90%, 900px)",
-              background: "rgba(16, 59, 43, 0.85)",
-              borderTopRightRadius: "58px",
-              borderBottomLeftRadius: "58px",
-              padding: "2.5rem 4rem",
-              textAlign: "center",
-            }}
-          >
-            <p
-              style={{
-                color: "#FFEEAD",
-                fontFamily: "EB Garamond, serif",
-                fontSize: "clamp(1rem, 2vw, 22px)",
-                fontWeight: 500,
-                lineHeight: 1.6,
-                margin: 0,
-                maxWidth: "800px",
-                display: "inline-flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "baseline",
-                  flexWrap: "nowrap",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "3.5rem",
-                    fontWeight: "800",
-                    lineHeight: "0.9",
-                    marginRight: "0.1em",
-                  }}
-                >
-                  O
-                </span>
-                <span
-                  style={{
-                    fontSize: "clamp(1rem, 2vw, 22px)",
-                    fontWeight: 500,
-                  }}
-                >
-                  ur mission is to deliver innovative, reliable, and
-                  customer-focused solutions that create lasting value while
-                  upholding integrity, sustainability, and excellence in
-                  everything we do.
-                </span>
-              </span>
-            </p>
-          </div>
-        </section>
+        <AboutUsMission />
+        <AboutUsTimeline />
 
-        {/* Team Vertical Stack */}
-        <div
-          className="flex flex-col items-center justify-start gap-7 w-[204px] mx-auto py-10 relative z-10"
-          style={{ marginBottom: "5rem" }}
-        >
-          {/* Top Circle */}
-          <img
-            src={AU1}
-            alt="Team member 1"
-            className="w-[156px] h-[156px] rounded-full border-[5px] border-[#D56B4B] bg-[#D9D9D9] object-cover"
-          />
-
-          {/* Divider Line */}
-          <div className="h-[100px] w-[7px] bg-[#043222]"></div>
-
-          {/* Circle 2 */}
-          <img
-            src={AU2}
-            alt="Team member 2"
-            className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
-          />
-
-          {/* Divider Line */}
-          <div className="h-[100px] w-[7px] bg-[#043222]"></div>
-
-          {/* Circle 3 */}
-          <img
-            src={AU3}
-            alt="Team member 3"
-            className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
-          />
-
-          {/* Divider Line */}
-          <div className="h-[100px] w-[7px] bg-[#043222]"></div>
-
-          {/* Circle 4 */}
-          <img
-            src={AU4}
-            alt="Team member 4"
-            className="w-[152px] h-[152px] rounded-full border-[5px] border-[#D56B4B] object-cover"
-          />
+        <div style={{ marginBottom: "2rem" }}>
+          <OurTeam />
         </div>
+        <OurAchievements />
       </main>
       <Footer />
     </>
