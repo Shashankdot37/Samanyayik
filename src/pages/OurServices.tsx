@@ -1,14 +1,14 @@
-import PracticeAreasSection from "../components/PracticeAreasSection";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Services from "../components/Services";
 
-const Services: React.FC = () => {
+const OurServices: React.FC = () => {
   return (
     <>
       <Header />
-      <section className="min-w-screen min-h-screen">
+      <section className="min-w-screen min-h-screen flex flex-col justify-start items-center gap-[8vh]" style={{marginTop:"2rem"}}>
         <section
-          className="flex flex-col items-center mt-12 mb-8 text-center px-4"
+          className="flex flex-col items-center mb-8 text-center px-4"
           role="banner"
         >
           <h1
@@ -22,10 +22,13 @@ const Services: React.FC = () => {
             Our Services
           </h1>
         </section>
+        <section>
+          <Services />
+        </section>
       </section>
       <Footer />
     </>
   );
 };
 
-export default Services;
+export default OurServices;

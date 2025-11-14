@@ -163,7 +163,7 @@ const NoticesPage: React.FC = () => {
       <Header />
 
       <section style={contentStyle} role="main" aria-label="Notices">
-        <h1 style={titleStyle}>Notices</h1>
+        <h1 style={titleStyle} aria-label="Notices" role="banner">Notices</h1>
 
         {/* Categories */}
         <div style={categoryContainerStyle}>

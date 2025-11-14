@@ -17,7 +17,10 @@ const AboutUs: React.FC = () => {
           style={{
             fontSize: "clamp(2rem, 4vw, 57px)",
             marginTop: "2rem",
+            fontWeight:"bold"
           }}
+          aria-label="About Us"
+          role="banner"
         >
           About Us
         </h1>

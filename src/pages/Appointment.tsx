@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Step1DatePicker from "../components/step1DatePicker";
+import Step1DatePicker from "../components/Step1DatePicker";
 import TimePicker from "../components/TimePicker";
 import FinalClientForm from "../components/FinalClientForm";
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reviewer1 from "../assets/c1.jpeg";
 import reviewer2 from "../assets/c2.jpeg";
 import reviewer3 from "../assets/c3.jpeg";
@@ -9,14 +9,14 @@ const testimonials = [
     name: "Madan Rokaya",
     position: "Applicant",
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.",
   },
   {
     image: reviewer2,
     name: "Sita Sharma",
     position: "Applicant",
     review:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
   },
   {
     image: reviewer3,
@@ -29,6 +29,13 @@ const testimonials = [
 
 const Testimonial = () => {
   const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const prevTestimonial = () => {
     setCurrent(current === 0 ? testimonials.length - 1 : current - 1);
@@ -42,105 +49,228 @@ const Testimonial = () => {
 
   return (
     <section
-      className="w-full min-h-screen relative"
       style={{
+        width: "100%",
+        minHeight: "100vh",
         borderTopLeftRadius: "58px",
         borderTopRightRadius: "58px",
         backgroundColor: "#043222",
         overflow: "hidden",
         zIndex: 32,
+        padding: isMobile ? "40px 10px" : "60px 20px",
+        boxSizing: "border-box",
       }}
     >
-      {/* Heading at top */}
+      {/* Heading */}
       <div
-        className="w-full flex justify-center mt-8"
-        style={{ marginBottom: "20vh" }}
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: isMobile ? "6vh" : "12vh",
+        }}
       >
         <h1
-          className="font-['EB_Garamond'] text-center"
           style={{
+            fontFamily: "EB Garamond, serif",
             color: "#FFEEAD",
-            fontSize: "clamp(2.5rem, 6vw, 5.9rem)",
+            fontSize: isMobile ? "2.2rem" : "4rem",
+            textAlign: "center",
+            lineHeight: 1.2,
+            padding: "0 10px",
           }}
         >
           What our Clients Say
         </h1>
       </div>
 
-      {/* Carousel layout */}
-      <div className="flex items-center justify-center w-full w-[90%] mx-auto mt-12 relative">
-        {/* Previous Button */}
-        <button
-          onClick={prevTestimonial}
-          className="absolute left-[5rem] flex flex-col items-center justify-center group cursor-pointer"
-          style={{ color: "#FFEEAD", fontSize: "5rem" }}
-        >
-          <span className="absolute inset-0 rounded-full border-2 border-yellow-200 opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-110 transition-all duration-300"></span>
-          <span className="relative z-10 text-yellow-200 group-hover:text-white select-none text-5xl">
-            &lt;
-          </span>
-          <span className="relative z-10 mt-2 text-base font-medium text-yellow-200 group-hover:text-white">
-            Previous
-          </span>
-        </button>
+      {/* Outer Wrapper */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {/* DESKTOP BUTTONS */}
+        {!isMobile && (
+          <>
+            <button
+              onClick={prevTestimonial}
+              style={{
+                position: "absolute",
+                left: "-4rem",
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#FFEEAD",
+                fontSize: "4rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <span>&lt;</span>
+              <span style={{ marginTop: "6px", fontSize: "1rem" }}>
+                Previous
+              </span>
+            </button>
 
-        {/* Testimonial */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 w-full">
-          {/* Left: Image + Name */}
-          <div className="flex flex-col items-center gap-4">
+            <button
+              onClick={nextTestimonial}
+              style={{
+                position: "absolute",
+                right: "-4rem",
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#FFEEAD",
+                fontSize: "4rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <span>&gt;</span>
+              <span style={{ marginTop: "6px", fontSize: "1rem" }}>
+                Next
+              </span>
+            </button>
+          </>
+        )}
+
+        {/* MAIN CONTENT */}
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: isMobile ? "25px" : "60px",
+            padding: "0 10px",
+          }}
+        >
+          {/* Image + Name */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
             <img
               src={currentTestimonial.image}
               alt={currentTestimonial.name}
-              className="w-32 h-32 rounded-full object-cover"
+              style={{
+                width: isMobile ? "90px" : "130px",
+                height: isMobile ? "90px" : "130px",
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
             />
+
             <span
               style={{
                 fontWeight: "bold",
-                fontSize: "25px",
+                fontSize: isMobile ? "18px" : "24px",
                 color: "white",
                 textAlign: "center",
               }}
             >
               {currentTestimonial.name}
             </span>
-            <span className="text-sm text-white">
+
+            <span
+              style={{
+                fontSize: "14px",
+                color: "white",
+                opacity: 0.9,
+              }}
+            >
               {currentTestimonial.position}
             </span>
           </div>
 
-          {/* Right: Review Box */}
+          {/* Review Box */}
           <div
-            className="bg-white text-black p-6 lg:p-8 rounded-tr-[40px] rounded-bl-[40px] max-w-xl w-[60%] opacity-80"
             style={{
-              minHeight: "250px",
+              backgroundColor: "white",
+              color: "black",
+              padding: isMobile ? "18px" : "30px",
+              borderTopRightRadius: "40px",
+              borderBottomLeftRadius: "40px",
+              width: isMobile ? "90%" : "55%",
+              maxWidth: "600px",
+              minHeight: isMobile ? "150px" : "220px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              opacity: 0.9,
             }}
           >
             <p
-              className="font-['EB_Garamond'] text-base leading-relaxed"
-              style={{ width: "90%" }}
+              style={{
+                fontFamily: "EB Garamond, serif",
+                fontSize: isMobile ? "1rem" : "1.3rem",
+                lineHeight: 1.6,
+                width: "90%",
+                textAlign: "center",
+              }}
             >
               "{currentTestimonial.review}"
             </p>
           </div>
         </div>
 
-        {/* Next Button */}
-        <button
-          onClick={nextTestimonial}
-          className="absolute right-[5rem] flex flex-col items-center justify-center group cursor-pointer"
-          style={{ color: "#FFEEAD", fontSize: "5rem" }}
-        >
-          <span className="absolute inset-0 rounded-full border-2 border-yellow-200 opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-110 transition-all duration-300"></span>
-          <span className="relative z-10 text-yellow-200 group-hover:text-white select-none text-5xl">
-            &gt;
-          </span>
-          <span className="relative z-10 mt-2 text-base font-medium text-yellow-200 group-hover:text-white">
-            Next
-          </span>
-        </button>
+        {/* MOBILE BUTTONS BELOW (FIXED & WORKING) */}
+        {isMobile && (
+          <div
+            style={{
+              marginTop: "30px",
+              display: "flex",
+              justifyContent: "center",
+              gap: "40px",
+            }}
+          >
+            <button
+              onClick={prevTestimonial}
+              style={{
+                background: "none",
+                border: "2px solid #FFEEAD",
+                borderRadius: "50%",
+                padding: "12px 20px",
+                fontSize: "1.6rem",
+                color: "#FFEEAD",
+              }}
+            >
+              &lt;
+            </button>
+
+            <button
+              onClick={nextTestimonial}
+              style={{
+                background: "none",
+                border: "2px solid #FFEEAD",
+                borderRadius: "50%",
+                padding: "12px 20px",
+                fontSize: "1.6rem",
+                color: "#FFEEAD",
+              }}
+            >
+              &gt;
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

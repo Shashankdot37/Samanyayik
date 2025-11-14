@@ -186,6 +186,7 @@ const News: React.FC = () => {
           style={{
             fontSize: "clamp(1.8rem, 4vw, 57px)",
             fontWeight: "bold",
+            marginTop:"2rem"
           }}
           aria-label="News & Articles"
         >
