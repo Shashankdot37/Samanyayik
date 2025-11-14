@@ -11,7 +11,7 @@ const PracticeAreasSection = () => {
         className="text-[#103B2B] font-['EB_Garamond'] text-center"
         style={{
           fontSize: "clamp(2.8rem, 6vw, 6.5rem)",
-          marginBottom: "clamp(3rem, 8vh, 6rem)",
+          marginBottom: "clamp(2rem, 8vh, 6rem)",
           marginTop: "2rem",
         }}
       >

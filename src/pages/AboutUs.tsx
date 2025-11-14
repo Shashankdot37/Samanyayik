@@ -34,7 +34,7 @@ const AboutUs: React.FC = () => {
           style={{
             width: "min(80%, 500px)",
             height: "auto",
-            top: "-8%",
+            top: "-2%",
             left: "-7%",
             zIndex: 0,
           }}

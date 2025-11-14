@@ -14,9 +14,9 @@ const AboutUsMission: React.FC = () => {
         style={{
           width: "clamp(250px, 90%, 900px)",
           background: "rgba(16, 59, 43, 0.85)",
-          borderTopRightRadius: "58px",
-          borderBottomLeftRadius: "58px",
-          padding: "2.5rem 4rem",
+          borderTopRightRadius: "30px",
+          borderBottomLeftRadius: "30px",
+          padding: "1rem 1rem",
           textAlign: "center",
         }}
       >
@@ -44,20 +44,13 @@ const AboutUsMission: React.FC = () => {
           >
             <span
               style={{
-                fontSize: "3.5rem",
-                fontWeight: "800",
-                lineHeight: "0.9",
-              }}
-            >
-              O
-            </span>
-            <span
-              style={{
                 fontSize: "clamp(1rem, 2vw, 22px)",
                 fontWeight: 500,
+                letterSpacing:"1px",
+                wordSpacing:"2px"
               }}
             >
-              ur mission is to deliver innovative, reliable, and
+              Our mission is to deliver innovative, reliable, and
               customer-focused solutions that create lasting value while
               upholding integrity, sustainability, and excellence in everything
               we do.

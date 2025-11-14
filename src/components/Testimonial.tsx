@@ -3,7 +3,14 @@ import reviewer1 from "../assets/c1.jpeg";
 import reviewer2 from "../assets/c2.jpeg";
 import reviewer3 from "../assets/c3.jpeg";
 
-const testimonials = [
+interface TestimonialType {
+  image: string;
+  name: string;
+  position: string;
+  review: string;
+}
+
+const testimonials: TestimonialType[] = [
   {
     image: reviewer1,
     name: "Madan Rokaya",
@@ -28,21 +35,33 @@ const testimonials = [
 ];
 
 const Testimonial = () => {
-  const [current, setCurrent] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [current, setCurrent] = useState<number>(0);
+  const [fade, setFade] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const animateChange = (newIndex: number) => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrent(newIndex);
+      setFade(true);
+    }, 300);
+  };
+
   const prevTestimonial = () => {
-    setCurrent(current === 0 ? testimonials.length - 1 : current - 1);
+    const newIndex = current === 0 ? testimonials.length - 1 : current - 1;
+    animateChange(newIndex);
   };
 
   const nextTestimonial = () => {
-    setCurrent(current === testimonials.length - 1 ? 0 : current + 1);
+    const newIndex = current === testimonials.length - 1 ? 0 : current + 1;
+    animateChange(newIndex);
   };
 
   const currentTestimonial = testimonials[current];
@@ -84,70 +103,43 @@ const Testimonial = () => {
         </h1>
       </div>
 
-      {/* Outer Wrapper */}
+      {/* Wrapper */}
       <div
         style={{
           width: "100%",
           maxWidth: "1200px",
           margin: "0 auto",
-          position: "relative",
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
+          position: "relative",
         }}
       >
-        {/* DESKTOP BUTTONS */}
+        {/* Prev (Desktop) */}
         {!isMobile && (
-          <>
-            <button
-              onClick={prevTestimonial}
-              style={{
-                position: "absolute",
-                left: "-4rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: "#FFEEAD",
-                fontSize: "4rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <span>&lt;</span>
-              <span style={{ marginTop: "6px", fontSize: "1rem" }}>
-                Previous
-              </span>
-            </button>
-
-            <button
-              onClick={nextTestimonial}
-              style={{
-                position: "absolute",
-                right: "-4rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                color: "#FFEEAD",
-                fontSize: "4rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <span>&gt;</span>
-              <span style={{ marginTop: "6px", fontSize: "1rem" }}>
-                Next
-              </span>
-            </button>
-          </>
+          <button
+            onClick={prevTestimonial}
+            style={{
+              position: "absolute",
+              left: "4rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#FFEEAD",
+              fontSize: "4rem",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <span>&lt;</span>
+            <span style={{ marginTop: 6, fontSize: "1rem" }}>Previous</span>
+          </button>
         )}
 
-        {/* MAIN CONTENT */}
+        {/* Content */}
         <div
           style={{
             width: "100%",
@@ -159,13 +151,16 @@ const Testimonial = () => {
             padding: "0 10px",
           }}
         >
-          {/* Image + Name */}
+          {/* Profile Section */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               gap: "10px",
+              opacity: fade ? 1 : 0,
+              transform: fade ? "translateY(0px)" : "translateY(15px)",
+              transition: "0.4s ease",
             }}
           >
             <img
@@ -215,7 +210,9 @@ const Testimonial = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              opacity: 0.9,
+              opacity: fade ? 1 : 0,
+              transform: fade ? "translateY(0px)" : "translateY(20px)",
+              transition: "0.4s ease",
             }}
           >
             <p
@@ -232,14 +229,39 @@ const Testimonial = () => {
           </div>
         </div>
 
-        {/* MOBILE BUTTONS BELOW (FIXED & WORKING) */}
+        {/* Next (Desktop) */}
+        {!isMobile && (
+          <button
+            onClick={nextTestimonial}
+            style={{
+              position: "absolute",
+              right: "4rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#FFEEAD",
+              fontSize: "4rem",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <span>&gt;</span>
+            <span style={{ marginTop: 6, fontSize: "1rem" }}>Next</span>
+          </button>
+        )}
+
+        </div>
+        {/* Mobile Buttons */}
         {isMobile && (
           <div
             style={{
-              marginTop: "30px",
+              marginTop: "35px",
               display: "flex",
               justifyContent: "center",
-              gap: "40px",
+              gap: "35px",
             }}
           >
             <button
@@ -248,8 +270,8 @@ const Testimonial = () => {
                 background: "none",
                 border: "2px solid #FFEEAD",
                 borderRadius: "50%",
-                padding: "12px 20px",
-                fontSize: "1.6rem",
+                padding: "10px 18px",
+                fontSize: "1.5rem",
                 color: "#FFEEAD",
               }}
             >
@@ -262,8 +284,8 @@ const Testimonial = () => {
                 background: "none",
                 border: "2px solid #FFEEAD",
                 borderRadius: "50%",
-                padding: "12px 20px",
-                fontSize: "1.6rem",
+                padding: "10px 18px",
+                fontSize: "1.5rem",
                 color: "#FFEEAD",
               }}
             >
@@ -271,7 +293,6 @@ const Testimonial = () => {
             </button>
           </div>
         )}
-      </div>
     </section>
   );
 };
